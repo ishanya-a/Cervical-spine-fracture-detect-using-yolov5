@@ -1,0 +1,28 @@
+{% extends "userlayout.html" %}
+{% block content %}
+
+<div class="w3-card-4 w3-margin">
+
+    <header class="w3-container w3-blue">
+      <h1>Upload MRI/CT Scan</h1>
+    </header>
+    {% if upload_message %}
+    <p class="text-red-100">{{ upload_message }}</p>
+    {% endif %}
+    <img src="static/images/test.jpg" alt="Alps" style="width:50%">
+    <br>
+    <form class="w3-container w3-margin" action="" method="post" enctype="multipart/form-data">
+        <input class="w3-btn w3-blue-grey" type="file" name="photo" accept="image/*"/>
+        <input class="w3-btn w3-blue-grey" name="sub" type="submit" value="Upload">
+        <input class="w3-btn w3-blue-grey" name="sub" type="submit" value="Test">
+        <br><br>
+    </form>
+
+    <br>
+    <footer class="w3-container w3-blue">
+      <h5></h5>
+    </footer>
+    
+    </div>
+    
+    {% endblock %}

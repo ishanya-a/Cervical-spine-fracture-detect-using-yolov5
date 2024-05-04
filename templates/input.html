@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="w3-card-4 w3-margin">
+
+    <header class="w3-container w3-blue">
+      <h1>Fill the Details</h1>
+    </header>
+
+
+    <form class="w3-container w3-margin" action="" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+      <label class="w3-text-teal"><b>Enter Your User Name</b></label>
+      <input id="username" class="w3-input w3-border w3-light-grey" type="text" name='name' value="{{ name }}" required>
+      <br>
+
+      <label class="w3-text-teal"><b>Enter Your Email ID</b></label>
+      <input id="email" class="w3-input w3-border w3-light-grey" type="email" name='email' value="{{ email }}" required>
+      <br>
+
+      <label class="w3-text-teal"><b>Enter your Contact No</b></label>
+      <input id="contact" class="w3-input w3-border w3-light-grey" type="text" name='num' value="{{ num }}">
+      <br>
+
+      <label class="w3-text-teal"><b>Age</b></label>
+      <input id="age" class="w3-input w3-border w3-light-grey" type="text" name='age' value="{{ age }}">
+      <br>
+
+      <label class="w3-text-teal"><b>Gender</b></label>
+      <input id="gender" class="w3-input w3-border w3-light-grey" type="text" name='gender' value="{{ gender }}">
+      <br>
+  
+      <label class="w3-text-teal"><b>Password</b></label>
+      <input id="password" class="w3-input w3-border w3-light-grey" type="password" name='password' value="{{ password }}" required>
+      <br>
+
+        <input class="w3-btn w3-blue-grey" name="sub" type="submit" value="Submit"/>
+        <br><br>
+   
+       
+    </form>
+
+    <br>
+    <footer class="w3-container w3-blue">
+      <h5></h5>
+    </footer>
+    
+</div>
+
+<script>
+function validateForm() {
+    var username = document.getElementById("username").value;
+    var email = document.getElementById("email").value;
+    var contact = document.getElementById("contact").value;
+    var age = document.getElementById("age").value;
+    var gender = document.getElementById("gender").value;
+    var password = document.getElementById("password").value;
+
+    var usernameRegex = /^[a-zA-Z0-9]+$/;
+    var contactRegex = /^\d{10}$/;
+    var ageRegex = /^(?:1[01][0-9]|120|\d{1,2})$/;
+    var genderOptions = ["male", "female", "transgender", "other"];
+    var passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]+$/;
+
+    if (!username.match(usernameRegex)) {
+        alert("Username can only contain alphanumeric characters.");
+        return false;
+    }
+
+    if (!contact.match(contactRegex)) {
+        alert("Contact must be a 10-digit number.");
+        return false;
+    }
+
+    if (!age.match(ageRegex)) {
+        alert("Age must be between 0 and 120.");
+        return false;
+    }
+
+    if (!genderOptions.includes(gender.toLowerCase())) {
+        alert("Gender must be 'male', 'female', 'transgender', or 'other'.");
+        return false;
+    }
+
+    if (!password.match(passwordRegex)) {
+        alert("Password must be alphanumeric.");
+        return false;
+    }
+
+    return true;
+}
+</script>
+
+{% endblock %}

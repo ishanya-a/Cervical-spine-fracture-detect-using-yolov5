@@ -1,0 +1,64 @@
+{% extends "userlayout.html" %}
+{% block content %}
+
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .grid-item img {
+        width: 100%;
+        height: auto;
+        border: 1px solid #ccc;
+    }
+
+    .folder-list {
+        list-style: none;
+        counter-reset: folder-counter;
+    }
+
+    .folder-item {
+        counter-increment: folder-counter;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .folder-item::before {
+        content: counter(folder-counter) ". ";
+        font-weight: bold;
+        color: #000; /* black */
+    }
+
+    hr {
+        border: 1px solid #000; /* black */
+        margin-top: 20px;
+    }
+</style>
+
+<div class="w3-card-4 w3-margin">
+    <header class="w3-container w3-blue">
+        <h1>Result Set</h1>
+    </header>
+    <br/>
+    <ul class="folder-list">
+        {% for result in result_files %}
+            <li class="folder-item">
+                {{ result.folder }}
+                <div class="grid-container">
+                    {% for image in result.images %}
+                        <div class="grid-item">
+                            <img src="{{ url_for('static', filename='runs/detect/' + result.folder + '/' + image) }}" alt="{{ image }}" style="width: 100%;">
+                        </div>
+                    {% endfor %}
+                </div>
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "userlayout.html" %}
+{% block content %}
+
+<div class="w3-card-4 w3-margin">
+
+    <header class="w3-container w3-blue">
+      <h1>Detected Fractures</h1>
+    </header>
+    {% if save_path %}
+        <img src="{{ save_path }}" alt="Detected Fractures" style="width:50%">
+    {% else %}
+        <p>No image detected</p>
+        <script>
+            console.log("No image detected");
+        </script>
+    {% endif %}
+    <br>
+
+    <br>
+    <footer class="w3-container w3-blue">
+      <h5></h5>
+    </footer>
+    
+    </div>
+
+    
+    {% endblock %}
